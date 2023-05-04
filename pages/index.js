@@ -20,6 +20,7 @@ import { useMediaQuery } from "react-responsive";
 import ProductsSwiper from "../components/productsSwiper";
 import Product from "../models/Product";
 import ProductCard from "../components/productCard";
+
 export default function home({ country, products }) {
   console.log("products", products);
   const { data: session } = useSession();
@@ -30,13 +31,16 @@ export default function home({ country, products }) {
       <Header country={country} />
       <div className={styles.home}>
         <div className={styles.container}>
+          {/* Main */}
           <Main />
+          {/* FlashDeals */}
           <FlashDeals />
+          {/* Category */}
           <div className={styles.home__category}>
             <Category
               header="Dresses"
               products={women_dresses}
-              background="#5a31f4" 
+              background="#5a31f4"
             />
             {!isMedium && (
               <Category
@@ -70,6 +74,8 @@ export default function home({ country, products }) {
     </>
   );
 }
+
+// Get user location before contents loads
 export async function getServerSideProps() {
   db.connectDb();
   let products = await Product.find().sort({ createdAt: -1 }).lean();
@@ -84,7 +90,7 @@ export async function getServerSideProps() {
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
-      //country: { name: data.name, flag: data.flag.emojitwo },
+      // country: { name: data.name, flag: data.flag.emojitwo }, Required only in production mode
       country: {
         name: "Morocco",
         flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",

@@ -22,7 +22,6 @@ import { EffectCards, Navigation } from "swiper";
 import User from "./User";
 import Header from "./Header";
 
-
 export default function Main() {
   const { data: session } = useSession();
   return (
@@ -34,4 +33,4 @@ export default function Main() {
       <User />
     </div>
   );
-} 
+}

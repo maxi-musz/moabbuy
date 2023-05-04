@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import UserMenu from "./UserMenu";
 import { useSession } from "next-auth/react";
+
 export default function Top({ country }) {
   const { data: session } = useSession();
   const [visible, setVisible] = useState(false);

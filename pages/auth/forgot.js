@@ -11,13 +11,15 @@ import Link from "next/link";
 import DotLoaderSpinner from "../../components/loaders/dotLoader";
 import axios from "axios";
 import { getSession } from "next-auth/react";
+
 export default function forgot() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState("");
+
   const emailValidation = Yup.object({
-    email: Yup.string() 
+    email: Yup.string()
       .required(
         "You'll need this when you log in and if you ever need to reset your password."
       )
@@ -73,7 +75,7 @@ export default function forgot() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
 
-                <CircledIconBtn type="submit" text="Send link" />
+                <CircledIconBtn type="submit" text="Request reset link" />
                 <div style={{ marginTop: "10px" }}>
                   {error && <span className={styles.error}>{error}</span>}
                   {success && <span className={styles.success}>{success}</span>}

@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+
 export const createActivationToken = (payload) => {
   return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {
     expiresIn: "6h",
@@ -9,4 +10,3 @@ export const createResetToken = (payload) => {
     expiresIn: "6h",
   });
 };
-  

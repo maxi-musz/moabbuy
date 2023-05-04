@@ -6,6 +6,7 @@ import User from "../../../models/User";
 import { createActivationToken, createResetToken } from "../../../utils/tokens";
 import { sendEmail } from "../../../utils/sendEmails";
 import { resetEmailTemplate } from "../../../emails/resetEmailTemplate";
+
 const handler = nc();
 
 handler.post(async (req, res) => {
@@ -14,7 +15,7 @@ handler.post(async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "This email does not exist." });
+      return res.status(400).json({ message: "Email does not exist." });
     }
     const user_id = createResetToken({
       id: user._id.toString(),
@@ -30,5 +31,4 @@ handler.post(async (req, res) => {
   }
 });
 
-export default handler; 
- 
+export default handler;

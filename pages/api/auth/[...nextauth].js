@@ -10,7 +10,9 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 import bcrypt from "bcrypt";
 import db from "../../../utils/db";
+
 db.connectDb();
+
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -84,7 +86,7 @@ const SignInUser = async ({ password, user }) => {
   }
   const testPassword = await bcrypt.compare(password, user.password);
   if (!testPassword) {
-    throw new Error("Email or password is wrong!");
+    throw new Error("Wrong Email or password!");
   }
   return user;
 };

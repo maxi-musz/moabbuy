@@ -10,24 +10,26 @@ const handler = nc();
 
 handler.post(async (req, res) => {
   try {
-    await db.connectDb(); 
+    await db.connectDb();
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
-      return res.status(400).json({ message: "Please fill in all fields." });
+      return res.status(400).json({ message: "Please validate all fields." });
     }
     if (!validateEmail(email)) {
-      return res.status(400).json({ message: "Invalid email." });
+      return res.status(400).json({ message: "Invalid email or password." });
     }
     const user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ message: "This email already exsits." });
+      return res
+        .status(400)
+        .json({ message: "Email already in use by another user." });
     }
     if (password.length < 6) {
       return res
         .status(400)
         .json({ message: "Password must be atleast 6 characters." });
     }
-    const cryptedPassword = await bcrypt.hash(password, 12);
+    const cryptedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: cryptedPassword });
 
     const addedUser = await newUser.save();
@@ -43,6 +45,6 @@ handler.post(async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}); 
+});
 
 export default handler;

@@ -15,8 +15,10 @@ import "swiper/css/effect-cards";
 // import required modules
 import { EffectCards, Navigation } from "swiper";
 import { userSwiperArray } from "../../../data/home";
+
 export default function User() {
   const { data: session } = useSession();
+
   return (
     <div className={styles.user}>
       <img
@@ -24,6 +26,7 @@ export default function User() {
         alt=""
         className={styles.user__header}
       />
+
       <div className={styles.user__container}>
         {session ? (
           <div className={styles.user__infos}>
@@ -45,22 +48,22 @@ export default function User() {
         <ul className={styles.user__links}>
           <li>
             <Link href="/profile">
-                <IoSettingsOutline />
+              <IoSettingsOutline />
             </Link>
           </li>
           <li>
             <Link href="">
-                <HiOutlineClipboardList />
+              <HiOutlineClipboardList />
             </Link>
           </li>
           <li>
             <Link href="">
-                <AiOutlineMessage />
+              <AiOutlineMessage />
             </Link>
           </li>
           <li>
             <Link href="">
-                <BsHeart />
+              <BsHeart />
             </Link>
           </li>
         </ul>

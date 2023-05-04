@@ -11,12 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 let persistor = persistStore(store);
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <> 
+    <>
       <Head>
-        <title>Shoppay</title>
+        <title>Moabbuy</title>
         <meta
           name="description"
-          content="Shoppay-online shopping service for all of your needs."
+          content="Moabbuy-online shopping service for all of your needs."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             <PayPalScriptProvider deferLoading={true}>
               <ToastContainer
                 position="top-right"
-                autoClose={5000} 
+                autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

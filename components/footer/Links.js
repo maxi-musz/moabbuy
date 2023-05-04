@@ -23,7 +23,7 @@ export default function Links() {
 }
 const links = [
   {
-    heading: "SHOPPAY",
+    heading: "MOABBUY",
     links: [
       {
         name: "About us",

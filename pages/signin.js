@@ -14,7 +14,7 @@ import {
   getSession,
   signIn,
   country,
-} from "next-auth/react"; 
+} from "next-auth/react";
 import axios from "axios";
 import DotLoaderSpinner from "../components/loaders/dotLoader";
 import Router from "next/router";
@@ -29,6 +29,7 @@ const initialvalues = {
   error: "",
   login_error: "",
 };
+
 export default function signin({ providers, callbackUrl, csrfToken }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialvalues);
@@ -43,6 +44,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
     error,
     login_error,
   } = user;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -75,6 +77,8 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
       .required("Confirm your password.")
       .oneOf([Yup.ref("password")], "Passwords must match."),
   });
+
+  // SignUp
   const signUpHandler = async () => {
     try {
       setLoading(true);
@@ -92,13 +96,15 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
           password: password,
         };
         const res = await signIn("credentials", options);
-        Router.push("/");
-      }, 2000);
+        Router.push(callbackUrl || "/");
+      }, 500);
     } catch (error) {
       setLoading(false);
       setUser({ ...user, success: "", error: error.response.data.message });
     }
   };
+
+  // signIn
   const signInHandler = async () => {
     setLoading(true);
     let options = {
@@ -131,13 +137,14 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
               <BiLeftArrowAlt />
             </div>
             <span>
-              We'd be happy to join us ! <Link href="/">Go Store</Link>
+              We'd be happy to have you here ! <Link href="/">Go to Store</Link>
             </span>
           </div>
           <div className={styles.login__form}>
             <h1>Sign in</h1>
             <p>
-              Get access to one of the best Eshopping services in the world.
+              Granting you access to one of the best Eshopping services in the
+              world.
             </p>
             <Formik
               enableReinitialize
