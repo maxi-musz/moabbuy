@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import { MdFlashOn } from "react-icons/md";
+
 export default function FlashCard({ product }) {
   return (
     <div className={styles.card}>

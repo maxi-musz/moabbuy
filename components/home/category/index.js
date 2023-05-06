@@ -1,6 +1,7 @@
 import { BsArrowRightCircle } from "react-icons/bs";
 import styles from "./styles.module.scss";
 import { useMediaQuery } from "react-responsive";
+
 export default function Category({ header, products, background }) {
   const isMedium = useMediaQuery({ query: "(max-width:1300px)" });
   const isMobile = useMediaQuery({ query: "(max-width:550px)" });
